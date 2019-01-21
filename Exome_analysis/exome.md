@@ -1,5 +1,4 @@
 # Exome analysis pipeline
-The pipeline was developed for the "Omics Technologies" Open Laboratory of [Kazan Federal University](https://kpfu.ru/eng) and it is fully integrated with its server's software and hardware.
 The pipeline includes single nucleotide polymorphysms (SNP) and copy number variants (CNV) calling and their enhanced annotation (by using freely accessible functional, clinical and gene expression datasets).
 
 ## SNP calling and automatic annotation
@@ -68,7 +67,7 @@ For ANNOVAR annotation we should compress the file with variants:
 ```sh
 $ gzip sample.GATK.filtered.vcf
 ```
-Then annotate it with [wANNOVAR](http://wannovar.wglab.org/) and download the result named "query.output.exome_summary.txt".
+Then annotate it with [wANNOVAR](http://wannovar.wglab.org/) and download the result named `query.output.exome_summary.txt`.
 After that, pick only good variants:
 ```sh
 $ grep 'PASS' query.output.exome_summary.txt > sample_exome_SNP.txt
