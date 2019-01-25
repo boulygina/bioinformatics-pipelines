@@ -90,7 +90,7 @@ $ humann2_barplot --sort sum metadata --input samples_pathabund.pcl --focal-feat
 ```
 The output example:
 Inline-style: 
-![alt text](https://github.com/boulygina/bioinformatics-pipelines/Shotgun_metagenome_analysis/chorismate_biosynthesis_I_sorted.png "Sorted_plot")
+![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Shotgun_metagenome_functional_analysis/chorismate_biosynthesis_I_sorted.png "Sorted_plot")
 
 Sorting by ecological similarity, normalizing pathway contributions within-sample, and expanding the list of species highlighted:
 ```bash
@@ -98,7 +98,7 @@ $ humann2_barplot --sort similarity --top-strata 12 --scaling normalize --input 
 ```
 The output example:
 Inline-style: 
-![alt text](https://github.com/boulygina/bioinformatics-pipelines/Shotgun_metagenome_analysis/chorismate_biosynthesis_I_grouped.png "Grouped_plot")
+![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Shotgun_metagenome_functional_analysis/chorismate_biosynthesis_I_grouped.png "Grouped_plot")
 Some additional sorting (by the most covered bacteria + by groups + by genera + logarithm):
 ```bash
 humann2_barplot --sort sum metadata -g -a pseudolog --input samples_pathabund.pcl --focal-feature PWY-1269 --focal-metadatum STSite --last-metadatum STSite --output plot.png
