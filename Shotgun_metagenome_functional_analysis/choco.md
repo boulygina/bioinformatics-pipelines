@@ -68,6 +68,7 @@ Add the following header into the file `samples_pathabundance_cpm.tsv`:
 |FEATURE \ SAMPLE | Sample1 | Sample2 | Sample 3 | 
 |:----------------|:-------:|:-------:|:--------:|
 |     STSite      |  case   |  case   |   ctrl   |
+
 The first header is the samples names, the second - samples group (e.g. "case-control"). Save the file as `samples_pathabund.pcl`.
 
 ## Statistical analysis
