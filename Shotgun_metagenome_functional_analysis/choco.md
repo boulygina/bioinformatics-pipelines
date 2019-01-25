@@ -64,6 +64,7 @@ $ grep -v "#" project_result/samples_genefamilies_names_cpm.tsv | grep -v "|" | 
 $ humann2_regroup_table --input project_result/samples_genefamilies_names_cpm.tsv --output project_result/samples_ko_cpm.tsv --groups uniref90_ko
 ```
 Add the following header into the file `samples_pathabundance_cpm.tsv`:
+
 |FEATURE \ SAMPLE | Sample1 | Sample2 | Sample 3 | 
 |:----------------|:-------:|:-------:|:--------:|
 |     STSite      |  case   |  case   |   ctrl   |
