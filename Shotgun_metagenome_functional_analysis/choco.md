@@ -89,7 +89,6 @@ A plot with samples sorted by groups:
 $ humann2_barplot --sort sum metadata --input samples_pathabund.pcl --focal-feature GLYCOGENSYNTH-PWY --focal-metadatum STSite --last-metadatum STSite --output glycogen2.png
 ```
 The output example:
-Inline-style: 
 ![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Shotgun_metagenome_functional_analysis/chorismate_biosynthesis_I_sorted.png "Sorted_plot")
 
 Sorting by ecological similarity, normalizing pathway contributions within-sample, and expanding the list of species highlighted:
@@ -97,7 +96,6 @@ Sorting by ecological similarity, normalizing pathway contributions within-sampl
 $ humann2_barplot --sort similarity --top-strata 12 --scaling normalize --input samples_pathabund.pcl --focal-feature GLYCOGENSYNTH-PWY --focal-metadatum STSite --last-metadatum STSite --output glycogen3.png
 ```
 The output example:
-Inline-style: 
 ![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Shotgun_metagenome_functional_analysis/chorismate_biosynthesis_I_grouped.png "Grouped_plot")
 Some additional sorting (by the most covered bacteria + by groups + by genera + logarithm):
 ```bash
