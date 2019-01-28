@@ -31,6 +31,7 @@ $ ~/scripts/plink_linux_x86_64/plink --file project --missing-genotype 0 --make-
 ## Applying filters
 ### At the individual level
 ***For gender mismatch***
+
 Calculate the mean homozygosity rate across X-chromosome markers for each individual in the study:
 ```bash
 $ ~/scripts/plink_linux_x86_64/plink --bfile project --check-sex --out project
@@ -41,6 +42,7 @@ Output is `project.sexprobs`. The 3rd column contains gender info in the input f
 *In Russian:* Для мужчин маркеры на непсевдоаутосомальном участке Х-хромосомы не могут быть гетерозиготными. Такие генотипы обозначаются как "missing". Если много значений "missing" в мужских образцах, то это, скорее всего, женщина. Ожидаемое значение степени гомозиготности для мужчин 1, для женщин < 0.2. Образцы с отклонениями от этих значений удаляются.
 
 ***For missing SNPs***
+
 Identification of individuals with elevated missing data rates and outlying heterozygosity rate:
 ```bash
 $ ~/scripts/plink_linux_x86_64/plink --bfile project --missing --out project
@@ -53,6 +55,7 @@ In the output `.het` the 3rd column contains the observed number of heterozygouo
 To extract such samples, run the R script `imiss-vs-het.r` on the local machine. The plot `project.imiss-vs-het.pdf` will reveal outliers (points outside the red threshold lines). Find their names in output tables sorting the columns "logF_MISS" and "meanHet", and save them as *`fail-imisshet-qc.txt`*.
 
 ***For duplicated or related individuals***
+
 To estimate relatedness, we need to calculate the identity by decent, IBD. For each pair of samples the average rate of common alleles is calculated.
 
 For that, markers in high linkage disequilibrium (LD) are removed first to thin the data:
@@ -81,6 +84,7 @@ $ perl run-IBD-QC.pl project
 Look up the QC-failed samples in *`fail-IBD-QC.txt`*.
 
 ***For individuals of divergent ancestry***
+
 Build the PCA with [HapMap3](https://www.sanger.ac.uk/resources/downloads/human/hapmap3.html) samples with known ancestry. "PCA is used to (1) screen the study population for heterogeneous ethnic backgrounds and (2) to correct for potential population stratification (the difference of allele frequencies in ancestral subpopulations)" [from [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5007749/)].
 
 The whole procedure is executed as described in the [ENIGMA Network](http://enigma.ini.usc.edu/) [manual](http://enigma.ini.usc.edu/wp-content/uploads/2010/08/ImputationProtocolsv1.0.pdf).
