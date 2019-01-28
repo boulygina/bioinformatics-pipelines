@@ -30,7 +30,7 @@ $ humann2_config --update database_folders nucleotide databases/chocophlan
 $ humann2_config --update database_folders protein databases/uniref
 $ humann2_config --update database_folders utility_mapping databases/utility_mapping
 ```
-## Running the mapping
+## Mapping reads to HUMAnN2 database
 ```bash
 $ humann2 --input sample1.fastq --output sample1 --threads 30 --gap-fill on --search-mode uniref90 --memory-use maximum
 ```
@@ -64,12 +64,14 @@ $ grep -v "#" project_result/samples_genefamilies_names_cpm.tsv | grep -v "|" | 
 $ humann2_regroup_table --input project_result/samples_genefamilies_names_cpm.tsv --output project_result/samples_ko_cpm.tsv --groups uniref90_ko
 ```
 Add the following header into the file `samples_pathabundance_cpm.tsv`:
+
 |FEATURE \ SAMPLE | Sample1 | Sample2 | Sample 3 | 
 |:----------------|:-------:|:-------:|:--------:|
 |     STSite      |  case   |  case   |   ctrl   |
+
 The first header is the samples names, the second - samples group (e.g. "case-control"). Save the file as `samples_pathabund.pcl`.
 
-## Statistical analysis
+## Association analysis
 Explore the association between comparison groups ("case-control" in this case) and samples taxonomy via the Kruskal-Wallis H-test:
 ```bash
 $ humann2_associate --input project_result/samples_pathabund.pcl --last-metadatum STSite --focal-metadatum STSite --focal-type categorical --output project_result/samples_stats.txt
@@ -89,16 +91,14 @@ A plot with samples sorted by groups:
 $ humann2_barplot --sort sum metadata --input samples_pathabund.pcl --focal-feature GLYCOGENSYNTH-PWY --focal-metadatum STSite --last-metadatum STSite --output glycogen2.png
 ```
 The output example:
-Inline-style: 
-![alt text](https://github.com/boulygina/bioinformatics-pipelines/Shotgun_metagenome_analysis/chorismate_biosynthesis_I_sorted.png "Sorted_plot")
+![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Shotgun_metagenome_functional_analysis/chorismate_biosynthesis_I_sorted.png "Sorted_plot")
 
 Sorting by ecological similarity, normalizing pathway contributions within-sample, and expanding the list of species highlighted:
 ```bash
 $ humann2_barplot --sort similarity --top-strata 12 --scaling normalize --input samples_pathabund.pcl --focal-feature GLYCOGENSYNTH-PWY --focal-metadatum STSite --last-metadatum STSite --output glycogen3.png
 ```
 The output example:
-Inline-style: 
-![alt text](https://github.com/boulygina/bioinformatics-pipelines/Shotgun_metagenome_analysis/chorismate_biosynthesis_I_grouped.png "Grouped_plot")
+![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Shotgun_metagenome_functional_analysis/chorismate_biosynthesis_I_grouped.png "Grouped_plot")
 Some additional sorting (by the most covered bacteria + by groups + by genera + logarithm):
 ```bash
 humann2_barplot --sort sum metadata -g -a pseudolog --input samples_pathabund.pcl --focal-feature PWY-1269 --focal-metadatum STSite --last-metadatum STSite --output plot.png

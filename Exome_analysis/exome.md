@@ -1,6 +1,8 @@
 # Exome analysis pipeline
 The pipeline includes single nucleotide polymorphysms (SNP) and copy number variants (CNV) calling and their enhanced annotation (by using freely accessible functional, clinical and gene expression datasets).
 
+All the proprietary scripts used in this pipeline are located in `~/scripts/Exome_analysis_pipeline/`.
+
 ## SNP calling and automatic annotation
 ### Reads quality check with [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/):
 First, we need to perform some quality filtering:
