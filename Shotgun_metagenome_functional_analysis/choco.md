@@ -30,7 +30,7 @@ $ humann2_config --update database_folders nucleotide databases/chocophlan
 $ humann2_config --update database_folders protein databases/uniref
 $ humann2_config --update database_folders utility_mapping databases/utility_mapping
 ```
-## Running the mapping
+## Mapping reads to HUMAnN2 database
 ```bash
 $ humann2 --input sample1.fastq --output sample1 --threads 30 --gap-fill on --search-mode uniref90 --memory-use maximum
 ```
@@ -71,7 +71,7 @@ Add the following header into the file `samples_pathabundance_cpm.tsv`:
 
 The first header is the samples names, the second - samples group (e.g. "case-control"). Save the file as `samples_pathabund.pcl`.
 
-## Statistical analysis
+## Association analysis
 Explore the association between comparison groups ("case-control" in this case) and samples taxonomy via the Kruskal-Wallis H-test:
 ```bash
 $ humann2_associate --input project_result/samples_pathabund.pcl --last-metadatum STSite --focal-metadatum STSite --focal-type categorical --output project_result/samples_stats.txt
