@@ -1,5 +1,5 @@
 # GWAS data QC
-This pipeline described the quality control procedures for the Genome Wide Association Studies (microarray) data using [PLINK](https://www.cog-genomics.org/plink2) v1.9. The pipeline includes checking for:
+This pipeline describes the quality control procedures for the Genome Wide Association Studies (microarray) data using [PLINK](https://www.cog-genomics.org/plink2) v1.9. The pipeline includes checking for:
 - gender mismatch
 - missingness for individuals
 - missingness for markers
