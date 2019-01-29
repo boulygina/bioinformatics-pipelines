@@ -123,7 +123,7 @@ Remove `local_tmp.fam` and `external_tmp.fam`.
 Plot the PCA in R using `plot-pca-results.r `. Save out the name of outliers in *`fail-PCA-QC.txt`*.
 
 The output example:
-![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/GWAS_data_QC/PCA_HapMap3.pdf "PCA_HapMap3")
+![alt text](https://github.com/boulygina/bioinformatics-pipelines/blob/master/GWAS_data_QC/PCA_HapMap3.png "PCA_HapMap3")
 
 ### At the marker level
 Now, combine the samples from all *`fail-QC`* files to one: `project-fail-qc.txt`. Remove these samples from the analysis:
