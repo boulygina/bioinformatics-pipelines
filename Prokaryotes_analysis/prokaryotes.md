@@ -29,12 +29,12 @@ $ cutadapt -a AGATCGGAAGAG -A AGATCGGAAGAG -m 50 -o sample_R1_001_trimmed.fastq 
 
 ### Assembly with [SPAdes](http://cab.spbu.ru/software/spades/) v.3.11.1
 _Draft genome assembly:_
-```python
+```
 $ ~/scripts/SPAdes-3.10.1-Linux/bin/spades.py --careful -o spades_trimmed \\
 -1 sample_R1_001_trimmed.fastq -2 sample_R2_001_trimmed.fastq
 ```
 _Plasmids assembly:_
-```python
+```
 $ ~/scripts/SPAdes-3.10.1-Linux/bin/spades.py --careful -o spades_trimmed_plasmids \\
 -1 sample_R1_001_trimmed.fastq -2 sample_R2_001_trimmed.fastq --plasmid
 ```
@@ -54,10 +54,10 @@ $ ~/scripts/prokka-1.12/bin/prokka --cpu 8 --outdir prokka --prefix Kleb \\
 spades_trimmed/contigs.fasta
 ```
 As a result, in the output `prokka` directory 12 annotation files are generated. The most important are:
-- faa: protein list with amino acid sequences 
-- ffn: genes list with nucleotide sequences 
+- faa: protein list with amino acid sequences
+- ffn: genes list with nucleotide sequences
 - gbk: GenBank annotation
-- tbl: gene abbreviation list with CDS start and end positions  
+- tbl: gene abbreviation list with CDS start and end positions
 - tsv: gene abbreviation list with their names, protein products, and EC number.
 
 For rRNA annotation, run on the local machine:
@@ -89,7 +89,7 @@ $ java -jar snpEff.jar eff -o txt -no-upstream -no-downstream -v Your_organism_g
 ```
 ### MLST typing with [srst2](https://github.com/katholt/srst2#basic-usage---mlst)
 Run on the local machine:
-```python
+```
 $ getmlst.py --species "Your_genus your_species"
 
 ## Follow the "Suggested srst2 command for use with this MLST database:"
@@ -111,5 +111,5 @@ The most important output files are:
 Load `CoreGenes.fasta` into FigTree software (on the local machine), choose "Trees" menu and then "PhyML" (maximum likelihood tree construction) with 100-1000 bootstrap iterations. After the tree is built, save it as `.tree` format. Newick-formatted tree could be visualized using the [iTOL](https://itol.embl.de/upload.cgi) or [treeview](http://etetoolkit.org/treeview/) web instruments.
 
 Phylogenetic tree example:
-!Phylogenetic_tree](https://github.com/boulygina/bioinformatics-pipelines/Prokaryotes_analysis/tree14.png "Phylogenetic_tree"
+![Phylogenetic_tree](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Prokaryotes_analysis/tree14.png) "Phylogenetic_tree"
 
