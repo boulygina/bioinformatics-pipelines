@@ -25,7 +25,7 @@ $ cutadapt -a AGATCGGAAGAG -A AGATCGGAAGAG -m 50 -o sample_R1_001_trimmed.fastq 
 -p sample_R2_001_trimmed.fastq sample_R1_001.fastq.gz sample_R2_001.fastq.gz
 ```
 -  `-a` and `-A` define the sequences which need to be removed from forward and reverse reads according to the FastQC reports
-- `-m` define the minimal read length after trimming.
+- `-m` defines the minimal read length after trimming.
 
 ### Assembly with [SPAdes](http://cab.spbu.ru/software/spades/) v.3.11.1
 _Draft genome assembly:_
@@ -111,5 +111,5 @@ The most important output files are:
 Load `CoreGenes.fasta` into FigTree software (on the local machine), choose "Trees" menu and then "PhyML" (maximum likelihood tree construction) with 100-1000 bootstrap iterations. After the tree is built, save it as `.tree` format. Newick-formatted tree could be visualized using the [iTOL](https://itol.embl.de/upload.cgi) or [treeview](http://etetoolkit.org/treeview/) web instruments.
 
 Phylogenetic tree example:
-![Phylogenetic_tree](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Prokaryotes_analysis/tree14.png) "Phylogenetic_tree"
+![Phylogenetic_tree](https://github.com/boulygina/bioinformatics-pipelines/blob/master/Prokaryotes_analysis/tree14.png)
 
