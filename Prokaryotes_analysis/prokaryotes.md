@@ -74,10 +74,10 @@ $ bowtie2-build reference.fasta {prefix}
 ```bash
 $ bowtie2 -x {prefix} -1 sample_R1_001_trimmed.fastq -2 sample_R2_001_trimmed.fastq -S sample.sam
 $ samtools view -bS sample.sam > sample.bam
-$ samtools sort sample.bam sample_sorted
+$ samtools sort sample.bam -o sample_sorted.bam
 $ samtools index sample_sorted.bam
 $ samtools mpileup -uD -f reference.fasta sample_sorted.bam > sample.bcf
-$ bcftools view -vcg sample.bcf > sample.vcf
+$ bcftools call sample.bcf -mv > sample.vcf
 ```
 ### SNP annotation with [SnpEff](http://snpeff.sourceforge.net/) v.3.6
 The directory `/data/snpEff/data/Your_organism_genus_and_species/` should contain the annotation file for reference genome in Genbank format `.gbk`. Rename this file to `.gb`. In the end of the configuration file `snpeff.config` add the following line:
