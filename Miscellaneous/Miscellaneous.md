@@ -91,7 +91,7 @@ $ cellranger count --id=sample_name --transcriptome=/data/reference/homo_sapiens
 
 ### Run python notebook locally
 ```bash
-$ cd ~/Desktop/notebook  
+$ cd ~/Desktop/notebook
 $ ~/anaconda3/bin/jupyter notebook
 ```
 ### BLAST 2.2.28+
@@ -123,41 +123,42 @@ $ /usr/local/bin/bcl2fastq -r 20 -d 10 -p 10 -w 8 --no-lane-splitting --min-log-
 ```
 
 ### One-liners
-Average read length in `.fasta`:
+- Average read length in `.fasta`:
+
 ```$ awk '{/>/&&++a||b+=length()}END{print b/a}' sample.fna```
 
-Read length discribution in `.fastq`:
+- Read length discribution in `.fastq`:
 ```$ awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' sample.fastq```
 
-Convert `.fastq` to `.fasta`:
+- Convert `.fastq` to `.fasta`:
 ```$ awk 'NR%4==1{print ">" $0} NR%4==2{print "" $0}' file.fastq > file.fasta```
 or 
 ```$ sed -n '1~4s/^@/>/p;2~4p' file.fastq > file.fasta```
 
-Split `.fasta` to sequences and their names:
+- Split `.fasta` to sequences and their names:
 ```bash
 $ awk 'NR % 2 == 1' file.fasta > names.txt
 $ awk 'NR % 2 == 0' file.fasta > sequences.txt
 ```
 
-Column number in file:
+- Column number in file:
 ```$ awk '{print NF}' file | sort -nu | tail -n 1```
 
-Change java version:
+- Change java version:
 ```$ sudo update-alternatives --config java```
 
-Extract sequence from `.fasta` using the first word in its name:
+- Extract sequence from `.fasta` using the first word in its name:
 ``` $ perl ~/scripts/extractSequence.pl input.fasta _query_name_ > output.fasta``` 
 
-Remove `>` in the beginning of a line:
+- Remove `>` in the beginning of a line:
 ```$ sed 's|^[>]*||' input > output```
 
-Calculate insert size for paired-end reads:
+- Calculate insert size for paired-end reads:
 ```$ ~/scripts/bbmap/bbmerge.sh in1=sample_reads_r1.fastq in2=sample_reads_r2.fastq ihist=ihist.txt loose```
 
-Calculate sample coverage:
+- Calculate sample coverage:
 ```$ ~/scripts/bbmap/mapPacBio.sh in=reads.fastq ref=reference.fasta covstat=output.txt```
 
-Calculate duplicated lines in file:
+- Calculate duplicated lines in file:
 ```$ sort file.txt | uniq -c | grep 'duplicates_number' ```
 
