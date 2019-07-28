@@ -2,7 +2,7 @@ These are some useful instruments for other _in silico_ lab's tasks.
 
 ### _E. coli_ strains identification via [StrainEst](https://github.com/compmetagen/strainest)
 ```bash
-$ shh node6  
+$ ssh node6
 $ docker run --rm -v /data2:/data2 -v /data1:/data1 -v /data:/data -it compmetagen/strainest bash
 $ cd /data2/bio/strainest
 $ bowtie2 --very-fast --no-unal -x E_coli//bowtie/align -1 sample_reads_r1.fastq -2 sample_reads_r2.fastq -S sample.sam
@@ -23,7 +23,7 @@ $ srst2 --input_pe sample_reads_r1.fastq sample_reads_r2.fastq \\
 Suggested_genus_species.fasta --mlst_definitions suggested.txt --mlst_delimiter '_'
 ```
 ### Evaluating bacterial pathogenicity via [MP3](http://metagenomics.iiserb.ac.in/mp3/)
-Run prokka, get the `faa` folder with fasta files, copy them into the `~/scripts/mp3v.1.0' directory. For each fasta file we need to know the minimum amino acid sequence length. For that, run:
+Run prokka, get the `faa` folder with fasta files, copy them into the `~/scripts/mp3v.1.0` directory. For each fasta file we need to know the minimum amino acid sequence length. For that, run:
 ```bash
 $ cat Bifidobacterium_bifidum_85B.fasta | awk '$0 ~ ">" {print c; c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }'
 ```
@@ -54,9 +54,9 @@ $ docker run --rm -v /data1:/data1 -v /data2:/data2 -v /data:/data --net=host -i
 ```
 
 ### Genome variants annotation via local [ANNOVAR](http://annovar.openbioinformatics.org/en/latest/)
-```
+```bash
 $ ssh node6
-$ docker run --rm -v /data1:/data1 -v /data2:/data2 -v /data:/data --net=host -it zhangb1/annovar:latest bash  
+$ docker run --rm -v /data1:/data1 -v /data2:/data2 -v /data:/data --net=host -it zhangb1/annovar:latest bash
 $ /table_annovar.pl sample.PASS.vcf /data/reference/annovar/ --buildver hg19 \\
 -out sample.PASS.anno -remove -protocol refGene,cytoBand,esp6500siv2_all,1000g2015aug_all,1000g2015aug_afr,1000g2015aug_eas,1000g2015aug_eur,exac03,avsnp150,dbnsfp33a,clinvar_20170905,cosmic70 \\
 -operation g,r,f,f,f,f,f,f,f,f,f,f -nastring . -vcfinput
@@ -67,7 +67,7 @@ annovar/B002.PASS.anno.avinput /data/reference/annovar/
 ### Genome mapping quality assessment via [QualiMap](http://qualimap.bioinfo.cipf.es/)
 ```bash
 $ ssh node6
-$ docker run --rm -v /data1:/data1 -v /data2:/data2 -v /data:/data --net=host -it cgwyx/qualimap_conda_docker:latest bash  
+$ docker run --rm -v /data1:/data1 -v /data2:/data2 -v /data:/data --net=host -it cgwyx/qualimap_conda_docker:latest bash
 $ qualimap bamqc -bam sample.bam -outdir mapQC -outformat pdf --java-mem-size=16G
 ```
 
@@ -79,12 +79,24 @@ $ ./qualimap
 
 ### Single cell RNA-seq analysis via [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/count)
 ```bash
-$ node7
+$ ssh node7
 $ docker run --rm -v /data1:/data1 -v /data2:/data2 -v /data:/data --net=host -it singlecellportal/cell-ranger-count-2.1.1:latest bash
 $ cellranger mkfastq --id single_cell --run 180726_NB501097_0022_AHCHH2BGX5/ --samplesheet SampleSheet.csv 
 ## (add '--qc' flag for read quality filtering)  
 $ cellranger count --id=sample_name --transcriptome=/data/reference/homo_sapiens/10X_Genomics/refdata-cellranger-hg19-1.2.0 --fastqs=/data1/bio/single_cell/outs/fastq_path/single_cell/sample_name --sample=sample_name --expect-cells=2000
 ```
+### Single cell CNV analysis via [Cell Ranger](https://support.10xgenomics.com/single-cell-dna/software/pipelines/latest/what-is-cell-ranger-dna)
+```bash
+$ ssh node0
+$ cd /data2/bio/cellranger_dna/
+$ cellranger-dna-1.0.0/cellranger-dna mkfastq --run=/data1/bio/190219_NB501097_0029_AHYV2TBGX7 --id=project_id --samplesheet=/data1/bio/190219_NB501097_0029_AHYV2TBGX7/SampleSheet.csv
+```
+where `--id` is a name for output directory with fastq files.
+`--qc` calculate both sequencing and 10x-specific metrics, including per-sample barcode matching rate. Will not be performed unless this flag is specified.
+```bash
+$ cellranger-dna-1.0.0/cellranger-dna cnv --id=sample_id_analysis --reference=/data2/bio/cellranger_dna/refdata-GRCh37-1.0.0/ --fastqs=/data2/bio/cellranger_dna/sample190704_2/outs/fastq_path/HYV2MBGX7/R013-11sort/ --sample=sample_id
+```
+To set the cells number, use `--force-cells` flag (for instance, `--force-cell 200`).
 
 ### SNP linkage disequilibrium calculation
 [https://ldlink.nci.nih.gov/](https://ldlink.nci.nih.gov/)
@@ -95,12 +107,13 @@ $ cd ~/Desktop/notebook
 $ ~/anaconda3/bin/jupyter notebook
 ```
 ### BLAST 2.2.28+
-Local BLAST (nt/nr database):
+Local BLAST (nr/nt database - non-redundant nucleotide):
 ```bash
 $ ssh node0
-$ blastn -query file.fasta -db ../../ncbi-blast-2.2.30+/db/nt -out file.out \\
+$ blastn -query file.fasta -db /data/ncbi-blast-2.2.30+/db/nt -out file.out \\
 -evalue 0.00001 -outfmt '6 qseqid sseqid pident length evalue sskingdoms stitle' \\ 
 -num_threads 4 -num_alignments 1
+
 ### Open file.out in table editor, remove duplicates and sort the column with BLAST hits (e.g., column #3):
 $ awk '{print $3}' file.out | sort | uniq -c | sort -nr > blast_result.txt
 ```
@@ -113,13 +126,13 @@ $ makeblastdb -in file.fasta -dbtype nucl -parse_seqids -out database_name -titl
 $ blastn -query genes.fasta -db database_name -out genes.out
 ### Extracting matched database sequence
 $ blastdbcmd -db database_name -entry sequence_name_from_genes_out > genes.found.fa
-### Build bed file with database sequence name, start (-1 nt) and end coordinates and extract this exact matching sequence
+### Building bed file with database sequence name, start (-1 nt) and end coordinates and extracting this exact matching sequence
 $ fastaFromBed -fi genes.found.fa -bed coords.bed -fo exact_genes.fasta
 ```
 ### Bcl2fastq
 ```bash
 $ ssh node0
-$ /usr/local/bin/bcl2fastq -r 20 -d 10 -p 10 -w 8 --no-lane-splitting --min-log-level DEBUG --use-bases-mask Y151,I8,I8,Y151 -o Conversion
+$ /usr/local/bin/bcl2fastq --no-lane-splitting --min-log-level DEBUG --use-bases-mask Y151,I8,I8,Y151 -o Conversion
 ```
 
 ### One-liners
@@ -129,12 +142,10 @@ $ /usr/local/bin/bcl2fastq -r 20 -d 10 -p 10 -w 8 --no-lane-splitting --min-log-
 
 - Read length discribution in `.fastq`:
 
-```$ awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' sample.fastq```
+```$ awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' file.fastq```
 
 - Convert `.fastq` to `.fasta`:
 
-```$ awk 'NR%4==1{print ">" $0} NR%4==2{print "" $0}' file.fastq > file.fasta```
-or 
 ```$ sed -n '1~4s/^@/>/p;2~4p' file.fastq > file.fasta```
 
 - Split `.fasta` to sequences and their names:
