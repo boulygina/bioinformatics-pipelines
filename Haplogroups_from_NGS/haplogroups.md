@@ -1,6 +1,6 @@
 ## Identification of Y haplogroup from NGS data via [Yleaf](https://cluster15.erasmusmc.nl/fmb/Yleaf_v2/index.html?lang=en)
 Extract Y chromosome reads from the initial bam:
-`samtools view -h sample.mem.sorted.dedup.addrg.bqsr.bam chrY > sample_Y.bam`
+```samtools view -h sample.mem.sorted.dedup.addrg.bqsr.bam chrY > sample_Y.bam```
 
 On the local machine:
 ```python
@@ -14,7 +14,8 @@ python Yleaf.py -bam sample_Y.bam -out out -r 1 -q 20 -b 90 -t 1
 
 The output directory is `sample_Y`.
 
-To cite, use `Ralf A., Montiel González D., Zhong K., Kayser M. Yleaf: Software for Human Y-Chromosomal Haplogroup Inference from Next-Generation Sequencing Data. Molecular Biology and Evolution. Volume 35, Issue 5, 1 May 2018, Pages 1291–1294`
+To cite, use:
+```Ralf A., Montiel González D., Zhong K., Kayser M. Yleaf: Software for Human Y-Chromosomal Haplogroup Inference from Next-Generation Sequencing Data. Molecular Biology and Evolution. Volume 35, Issue 5, 1 May 2018, Pages 1291–1294```
 
 ## Identification of mtDNA haplogroup from NGS data via [mtDNA-Server](https://mtdna-server.uibk.ac.at/index.html)
 Map the reads to the reference mtDNA genome:
