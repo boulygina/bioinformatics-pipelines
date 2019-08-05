@@ -1,4 +1,4 @@
-# Submitting draft genome to NCBI (in russian)
+# Submitting draft genome to NCBI (in Russian)
 - Зайти в My NCBI → Submit
 - QuickStart → GenBank → Prokaryotic and Eukaryotic Genimes (WGS and complete) → GO
 - New Submission
@@ -6,7 +6,7 @@
 **1. Submitter**
 
 Заполните информацию о вас и о вашей организации.
-Звездочкой обозначены обязательные для заполнения поля
+Звездочкой обозначены обязательные для заполнения поля.
 → Continue
 
 **2. General Info**
@@ -18,7 +18,7 @@
 Если ранее не создавали BioSample для этого генома в NCBI → No
 
 - When should this submission be released to the public? 
-Выберите «Release immediately following processing», чтобы геном стал доступен сразу после аннотации.  
+Выберите «Release immediately following processing», чтобы геном стал доступен сразу после аннотации. 
 
 - Genome info:
 -- Assembly method: напр., SPAdes
@@ -38,11 +38,12 @@
 **3. BioProject General Info**
 
 Public description: краткое описание проекта, для каких целей секвенировали геном.
+
 → Continue
 
 **4. BioSample Type**
 
-Select the package that best describes your samples: Genome, metagenome or marker sequences (MIxS compliant) → Cultured Bacterial/Archaeal Genomic Sequences MIGS → выбрать подходящую среду обитания
+Select the package that best describes your samples: Genome, metagenome or marker sequences (MIxS compliant) → Cultured Bacterial/Archaeal Genomic Sequences MIGS → выберите подходящую среду обитания
 
 **5. BioSample Attributes**
 
@@ -57,7 +58,7 @@ Select the package that best describes your samples: Genome, metagenome or marke
 - latitude and longitude: координаты, напр., 38.98 N 77.11 W
 - isolation and growth condition: PubMed ID или ссылка для статьи с описанием метода выделения
 - number of replicons: 1
-- reference for biomaterial: публикация, где впервые упоминается организм
+- reference for biomaterial: публикация, в которой впервые упоминается организм
 
 → Continue
 
@@ -86,4 +87,4 @@ Annotate this prokaryotic genome in the [NCBI Prokaryotic Annotation Pipeline (P
 
 **10. Overview**
 
-Проверить, что все в порядке → Submit
+Проверить, все ли в порядке → Submit
