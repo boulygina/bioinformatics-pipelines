@@ -11,13 +11,14 @@ docker run --rm -v /data1:/data1 -v /data2:/data2 -v /data:/data --net=host -it 
 cd working_directory
 ```
 To start the analysis, you should create 2 files: `pe-33-manifest` and `sample-metadata.tsv`.
-- The `pe-33-manifest` is a comma-delimited text file which contains reads' absolute filepaths with a header. For example:
+- The `pe-33-manifest` is a **comma**-delimited text file which contains reads' absolute filepaths with a header. For example:
 
-sample-id,absolute-filepath,direction
-sample1,/data1/bio/boulygina/qiime2/reads/raw/Sample1_R1_001.fastq.gz,forward
-sample1,/data1/bio/boulygina/qiime2/reads/raw/Sample1_R2_001.fastq.gz,reverse
-sample2,/data1/bio/boulygina/qiime2/reads/raw/Sample2_R1_001.fastq.gz,forward
-sample2,/data1/bio/boulygina/qiime2/reads/raw/Sample2_R2_001.fastq.gz,reverse
+| sample-id | absolute-filepath | direction | 
+| :-------- |:----------------| :------------------- | 
+|sample1 | /data1/bio/boulygina/qiime2/reads/raw/Sample1_R1_001.fastq.gz | forward |
+|sample1 | /data1/bio/boulygina/qiime2/reads/raw/Sample1_R2_001.fastq.gz | reverse |
+|sample2 | /data1/bio/boulygina/qiime2/reads/raw/Sample2_R1_001.fastq.gz | forward |
+|sample2 | /data1/bio/boulygina/qiime2/reads/raw/Sample2_R2_001.fastq.gz | reverse |
 
 ... etc.
 
